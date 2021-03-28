@@ -12,7 +12,12 @@ import {ApplicationProvider} from './context/ApplicationContext';
 //React router
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-firebase.initializeApp(firebaseConfig);
+//Added this logic in because of some initialising error
+if (!firebase.apps.length){
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}
 
 function App() {
   return (
