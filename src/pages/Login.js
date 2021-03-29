@@ -16,10 +16,7 @@ export default function Login(){
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${process.env.PUBLIC_URL + '/background.jpeg'})`, height: '100vh', backgroundSize: '100%'}}> {/*Higher order components div*/}
             <div style={{width: '30%', marginTop: '25%', borderRadius: '10px', marginBottom: '25%', backgroundColor: 'white', borderStyle: 'outset'}}>{/*Card element for login*/}<br></br>
                 <h1 style={{fontWeight: 600, margin: '10px'}}>A personalized job app tracker</h1>
-                <details style={{margin: '10px'}}>
-                    <summary>Click to expand</summary>
-                    <p>A simple way for you to track the jobs that you apply to. Log in or sign up.</p>
-                </details>
+                <p style={{margin: '10px'}}>A simple way for you to track the jobs that you apply to. Log in or sign up.</p>
                 <TextField id='standard-basic' label='Email Address' style={{margin: '10px', width: '95%'}} inputMode='email'></TextField><br></br>
                 <TextField id='standard-basic' label='Password' style={{margin: '10px', width: '95%'}} type='password'></TextField><br></br>
                 <Button variant='contained' color='primary' style={{margin: '10px'}}>Login</Button>
