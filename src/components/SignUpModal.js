@@ -29,7 +29,7 @@ export default function SignUpModal () {
                 SetApplication(prevState => ({...prevState, isOpenSignUp: false, signUpEmail: '', signUpPassword: '', signUpPasswordConfirm: ''}));
             }).catch(error => {
                 alert(error.message);
-            })
+            });
         }
     }
 

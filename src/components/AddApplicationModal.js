@@ -15,6 +15,7 @@ import {ApplicationContext} from '../context/ApplicationContext';
 //Firebase
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 export default function AddApplicationModal() {
     const [application, SetApplication] = useContext(ApplicationContext);
@@ -32,6 +33,7 @@ export default function AddApplicationModal() {
                 country: application.country,
                 salary: application.salary,
                 status: application.status,
+                uid: application.uid,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 window.location.reload();
