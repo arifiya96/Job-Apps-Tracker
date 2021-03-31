@@ -81,6 +81,7 @@ export default function Home(){
             <Modal isOpen={application.isOpenUpdate} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenUpdate: false}))}>
                 <UpdateApplicationModal></UpdateApplicationModal>
             </Modal>
+            {JSON.stringify(application)}
         </div>
     )
 };

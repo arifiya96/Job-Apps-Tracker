@@ -30,7 +30,7 @@ export default function UpdateApplicationModal() {
                 /*
                 SetApplication(prevState => ({...prevState, salary: 0, application_id: null, isOpenUpdate: false}));
                 */
-                window.location.reload();
+                window.location.reload(); 
               })
             } else if (application.salary === 0 && application.status !== null){
               firebase.firestore().collection('applications').doc(application.application_id).update({
@@ -40,7 +40,7 @@ export default function UpdateApplicationModal() {
                 /*
                 SetApplication(prevState => ({...prevState, status: null, application_id: null, isOpenUpdate: false}));
                 */
-                window.location.reload();
+                window.location.reload(); 
               })
             } else {
               firebase.firestore().collection('applications').doc(application.application_id).update({
@@ -51,7 +51,7 @@ export default function UpdateApplicationModal() {
                 /*
                 SetApplication(prevState => ({...prevState, status: null, application_id: null, isOpenUpdate: false, salary: 0}));
                 */
-                window.location.reload();
+                window.location.reload(); 
               })
             }
           }
