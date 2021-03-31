@@ -24,8 +24,9 @@ export default function Login(){
         if (application.loginEmail === '' || application.loginPassword === ''){
             alert('Please fill a field in');
         } else {
-            firebase.auth().signInWithEmailAndPassword(application.loginEmail, application.loginPassword).then(() => {
+            firebase.auth().signInWithEmailAndPassword(application.loginEmail, application.loginPassword).then(user => {
                 SetApplication(prevState => ({...prevState, loginEmail: '', loginPassword: ''}));
+                localStorage.setItem('uid', user.user.uid);
             }).catch(error => {
                 alert(error.message);
             })

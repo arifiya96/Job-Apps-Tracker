@@ -23,7 +23,7 @@ export default function UpdateApplicationModal() {
             alert('Please update at least one field');
           } else {
             if (application.salary !== 0 && application.status === null){
-              firebase.firestore().collection('applications').doc(application.application_id).update({
+              firebase.firestore().collection(localStorage.getItem('uid')).doc(application.application_id).update({
                 salary: application.salary,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               }).then(() => {
@@ -33,7 +33,7 @@ export default function UpdateApplicationModal() {
                 window.location.reload(); 
               })
             } else if (application.salary === 0 && application.status !== null){
-              firebase.firestore().collection('applications').doc(application.application_id).update({
+              firebase.firestore().collection(localStorage.getItem('uid')).doc(application.application_id).update({
                 status: application.status,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               }).then(() => {
@@ -43,7 +43,7 @@ export default function UpdateApplicationModal() {
                 window.location.reload(); 
               })
             } else {
-              firebase.firestore().collection('applications').doc(application.application_id).update({
+              firebase.firestore().collection(localStorage.getItem('uid')).doc(application.application_id).update({
                 status: application.status,
                 salary: application.salary,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()

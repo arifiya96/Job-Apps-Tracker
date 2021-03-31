@@ -24,7 +24,7 @@ export default function AddApplicationModal() {
         if (application.position === null || application.company === null || application.yoe === 0 || application.industry === null || application.city === null || application.country === null || application.salary === 0 || application.status === null ){
             alert('Please fill in all fields');
         } else {
-            firebase.firestore().collection('applications').add({
+            firebase.firestore().collection(localStorage.getItem('uid')).add({
                 position: application.position,
                 company: application.company,
                 yoe: application.yoe,
@@ -33,7 +33,6 @@ export default function AddApplicationModal() {
                 country: application.country,
                 salary: application.salary,
                 status: application.status,
-                uid: application.uid,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 window.location.reload();

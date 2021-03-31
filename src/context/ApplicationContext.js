@@ -21,8 +21,7 @@ export const ApplicationProvider = (props) => {
         signUpPassword: '',
         signUpPasswordConfirm: '',
         loginEmail: '',
-        loginPassword: '',
-        uid: ''
+        loginPassword: ''
     });
     return (
         <ApplicationContext.Provider value={[application, SetApplication]}>

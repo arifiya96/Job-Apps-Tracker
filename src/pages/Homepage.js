@@ -44,7 +44,7 @@ export default function Home(){
     const handleLogout = () => {
       firebase.auth().signOut().then(() => {
         alert('You have now signed out. Click ok to continue.');
-        SetApplication(prevState => ({...prevState, uid: ''}));
+        localStorage.clear();
         history.push('/');
       }).catch(error => {
         alert(error.message);
@@ -52,7 +52,7 @@ export default function Home(){
     }
 
     useEffect(() => {
-        firebase.firestore().collection('applications').where('uid','==',application.uid).get().then(querySnapshot => {
+        firebase.firestore().collection(localStorage.getItem('uid')).onSnapshot(querySnapshot => {
           const jobs_array = [];
           querySnapshot.forEach(documentSnapshot => {
             jobs_array.push({
@@ -63,12 +63,12 @@ export default function Home(){
           jobs_array.forEach(job => job.timestamp = job.timestamp.toDate())
           SetApplication(prevState => ({...prevState, rows: jobs_array}));
         });
-      }, [SetApplication, application.uid]);
+      }, [SetApplication]);
 
     return (
         <div> {/*<-- Higher order component*/}
             <h1 style={{textAlign: 'center', fontSize: '40px', fontWeight: 'bold'}}>Job Application Progress</h1>
-            {application.uid !== 'I24IqDUfKeTjKcOXGSmrrrGkQsD2' ?  
+            {localStorage.getItem('uid') !== 'I24IqDUfKeTjKcOXGSmrrrGkQsD2' ?  
             <Button variant="contained" color="default" startIcon={<Work></Work>} style={{margin: 5}} onClick={() => SetApplication(prevState => ({...prevState, isOpenAdd: true}))}>Add new application</Button> : 
             null}
             <Button variant="contained" color="secondary" startIcon={<ExitToApp></ExitToApp>} style={{margin: 5}} onClick={() => handleLogout()}>Log out</Button>
@@ -81,7 +81,6 @@ export default function Home(){
             <Modal isOpen={application.isOpenUpdate} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenUpdate: false}))}>
                 <UpdateApplicationModal></UpdateApplicationModal>
             </Modal>
-            {JSON.stringify(application)}
         </div>
     )
 };
