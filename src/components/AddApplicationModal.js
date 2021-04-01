@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import PostAdd from '@material-ui/icons/PostAdd';
+import Close from '@material-ui/icons/Close';
 
 //Context
 import {ApplicationContext} from '../context/ApplicationContext';
@@ -42,6 +43,11 @@ export default function AddApplicationModal() {
 
     return (
         <div style={{margin: 5}}>
+            <div>
+                <button style={{float: 'right'}} onClick={() => SetApplication(prevState => ({...prevState, isOpenAdd: false}))}>
+                    <Close style={{margin: 10}}></Close>
+                </button>
+            </div>
             <h1>New Job Application</h1>
             <TextField id="standard-basic" label="Position" style={{width: 300, margin: 5}} value={application.position} onChange={(event) => SetApplication(prevState => ({...prevState, position: event.target.value}))}></TextField>
             <TextField id="standard-basic" label="Company Name" style={{width: 300, margin: 5}} value={application.company} onChange={(event) => SetApplication(prevState => ({...prevState, company: event.target.value}))}></TextField><br></br>
@@ -97,7 +103,7 @@ export default function AddApplicationModal() {
                     <MenuItem value={'Passed Initial Screening, ongoing'}>Passed Initial Screening, ongoing</MenuItem>
                     <MenuItem value={'Straight rejection'}>Straight rejection</MenuItem>
                     <MenuItem value={'Rejected after initial screening'}>Rejected after initial screening</MenuItem>
-                    <MenuItem value={'Offer Recieved'}>Offer Recieved</MenuItem>
+                    <MenuItem value={'Offer Recieved'}>Offer Received</MenuItem>
                 </Select>
             </FormControl><br></br>
             <Button variant="contained" color="default" startIcon={<PostAdd></PostAdd>} style={{margin: 5}} onClick={() => handleSubmit()}>Add Application</Button>

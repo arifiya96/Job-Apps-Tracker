@@ -75,10 +75,18 @@ export default function Home(){
             <div style={{height: 500, width: '100%', margin: 5}} className={classes.root}>
                 <DataGrid rows={application.rows} columns={columns} onRowClick={(job) => handleUpdateModal(job.row.id)}></DataGrid>
             </div>  
-            <Modal isOpen={application.isOpenAdd} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenAdd: false}))}>
+            <Modal isOpen={application.isOpenAdd} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenAdd: false}))} style={{content: {
+                width: '40%',
+                height: '50%'
+              }
+            }}>
                 <AddApplicationModal></AddApplicationModal>
             </Modal>
-            <Modal isOpen={application.isOpenUpdate} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenUpdate: false}))}>
+            <Modal isOpen={application.isOpenUpdate} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenUpdate: false}))} style={{content: {
+                width: '50%',
+                height: '25%'
+              }
+            }}>
                 <UpdateApplicationModal></UpdateApplicationModal>
             </Modal>
         </div>
