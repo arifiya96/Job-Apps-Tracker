@@ -11,6 +11,7 @@ import {ApplicationContext} from '../context/ApplicationContext';
 //Firestore
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 export default function SignUpModal () {
     const [application, SetApplication] = useContext(ApplicationContext);
@@ -24,8 +25,19 @@ export default function SignUpModal () {
             alert('Passwords do not match!');
         } else {
             //Firebase authentication
-            firebase.auth().createUserWithEmailAndPassword(application.signUpEmail, application.signUpPassword).then(() => {
+            firebase.auth().createUserWithEmailAndPassword(application.signUpEmail, application.signUpPassword).then(user => {
                 alert('Registration successful!');
+                firebase.firestore().collection(user.user.uid).add({
+                    city: 'California',
+                    company: 'Google',
+                    country: 'United States 🇺🇸',
+                    industry: 'Tech',
+                    position: 'Tech Lead',
+                    salary: 'Withheld',
+                    status: 'Offer Recieved',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    yoe: 6
+                });
                 SetApplication(prevState => ({...prevState, isOpenSignUp: false, signUpEmail: '', signUpPassword: '', signUpPasswordConfirm: ''}));
             }).catch(error => {
                 alert(error.message);

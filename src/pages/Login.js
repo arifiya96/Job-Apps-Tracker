@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 
 //UI Components
 import TextField from '@material-ui/core/TextField';
@@ -20,6 +20,11 @@ export default function Login(){
     const [application, SetApplication] = useContext(ApplicationContext);
     const history = useHistory();
 
+    //Check if user is logged in
+    if (localStorage.getItem('uid')){
+        history.push('/home');
+    }
+
     const handleLogin = () => {
         if (application.loginEmail === '' || application.loginPassword === ''){
             alert('Please fill a field in');
@@ -27,21 +32,12 @@ export default function Login(){
             firebase.auth().signInWithEmailAndPassword(application.loginEmail, application.loginPassword).then(user => {
                 SetApplication(prevState => ({...prevState, loginEmail: '', loginPassword: ''}));
                 localStorage.setItem('uid', user.user.uid);
+                history.push('/home');
             }).catch(error => {
                 alert(error.message);
             })
         }
     }
-
-    useEffect(() => {
-        //Authentication logic
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                SetApplication(prevState => ({...prevState, uid: user.uid}));
-                history.push('/home');
-            }
-        })
-    },[history, SetApplication]);
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${process.env.PUBLIC_URL + '/background.jpeg'})`, height: '100vh', backgroundSize: '100%'}}> {/*Higher order components div*/}
