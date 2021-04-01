@@ -13,7 +13,7 @@ const columns = [
       clsx('super-app', {
         neutral: status.value === 'Application Submitted' || status.value === 'Passed Initial Screening, ongoing',
         negative: status.value === 'Straight rejection' || status.value === 'Rejected after initial screening',
-        positive: status.value === 'Offer Recieved' 
+        positive: status.value === 'Offer Received' 
       })
     },
     {field:'timestamp', renderHeader: () => (<strong style={{color:'white'}}>{'Last Updated'}</strong>), width: 200, headerClassName: 'super-app-theme--header'}

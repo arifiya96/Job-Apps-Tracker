@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import PostAdd from '@material-ui/icons/PostAdd';
 import Button from '@material-ui/core/Button';
+import Close from '@material-ui/icons/Close';
 
 //Context
 import {ApplicationContext} from '../context/ApplicationContext';
@@ -23,27 +24,27 @@ export default function UpdateApplicationModal() {
             alert('Please update at least one field');
           } else {
             if (application.salary !== 0 && application.status === null){
-              firebase.firestore().collection('applications').doc(application.application_id).update({
+              firebase.firestore().collection(localStorage.getItem('uid')).doc(application.application_id).update({
                 salary: application.salary,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               }).then(() => {
                 /*
                 SetApplication(prevState => ({...prevState, salary: 0, application_id: null, isOpenUpdate: false}));
                 */
-                window.location.reload();
+                window.location.reload(); 
               })
             } else if (application.salary === 0 && application.status !== null){
-              firebase.firestore().collection('applications').doc(application.application_id).update({
+              firebase.firestore().collection(localStorage.getItem('uid')).doc(application.application_id).update({
                 status: application.status,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               }).then(() => {
                 /*
                 SetApplication(prevState => ({...prevState, status: null, application_id: null, isOpenUpdate: false}));
                 */
-                window.location.reload();
+                window.location.reload(); 
               })
             } else {
-              firebase.firestore().collection('applications').doc(application.application_id).update({
+              firebase.firestore().collection(localStorage.getItem('uid')).doc(application.application_id).update({
                 status: application.status,
                 salary: application.salary,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -51,7 +52,7 @@ export default function UpdateApplicationModal() {
                 /*
                 SetApplication(prevState => ({...prevState, status: null, application_id: null, isOpenUpdate: false, salary: 0}));
                 */
-                window.location.reload();
+                window.location.reload(); 
               })
             }
           }
@@ -59,6 +60,11 @@ export default function UpdateApplicationModal() {
 
     return (
         <div>
+            <div>
+                <button style={{float: 'right'}} onClick={() => SetApplication(prevState => ({...prevState, isOpenUpdate: false}))}>
+                    <Close style={{margin: 10}}></Close>
+                </button>
+            </div>
             <h3>Update salary or status</h3>
             <FormControl style={{width: 300, margin: 5}}>
                 <InputLabel>Salary</InputLabel>
@@ -86,7 +92,7 @@ export default function UpdateApplicationModal() {
                     <MenuItem value={'Passed Initial Screening, ongoing'}>Passed Initial Screening, ongoing</MenuItem>
                     <MenuItem value={'Straight rejection'}>Straight rejection</MenuItem>
                     <MenuItem value={'Rejected after initial screening'}>Rejected after initial screening</MenuItem>
-                    <MenuItem value={'Offer Recieved'}>Offer Recieved</MenuItem>
+                    <MenuItem value={'Offer Recieved'}>Offer Received</MenuItem>
                 </Select>
             </FormControl><br></br>
             <Button variant="contained" color="default" startIcon={<PostAdd></PostAdd>} style={{margin: 5}} onClick={() => handleUpdate()}>Update Application</Button>

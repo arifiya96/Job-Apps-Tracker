@@ -15,7 +15,13 @@ export const ApplicationProvider = (props) => {
         application_id: null,
         rows: [],
         isOpenAdd: false,
-        isOpenUpdate: false
+        isOpenUpdate: false,
+        isOpenSignUp: false,
+        signUpEmail: '',
+        signUpPassword: '',
+        signUpPasswordConfirm: '',
+        loginEmail: '',
+        loginPassword: ''
     });
     return (
         <ApplicationContext.Provider value={[application, SetApplication]}>
