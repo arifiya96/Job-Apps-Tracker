@@ -1,22 +1,26 @@
 # Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Job Tracker Overview
+This is a simple CRUD application using react to track the job applications you apply to. It can do the following things:
 
-In the project directory, you can run:
+- Make an account to save all the jobs you have applied for. 
+- Add a job application where you can input various things about the job such as company name, location, salary and status.
+- Update the status of your application.
+- View all your applications in an interactive table. Click on the table fields to sort values. 
 
-### `npm start`
+## Screenshot example
+![Screenshot](Screenshot.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Please feel free to register an account. If you just want to interact with the app, you can use these test login details. Note that adding job applications have been disabled on this test account.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Email: demo_user@fake-email.com
+
+Password: job12345
 
 ## Backend
 
-The backend is cloud firestore.
+The backend is Google firebase - firestore.
 
 ## File structure
 
