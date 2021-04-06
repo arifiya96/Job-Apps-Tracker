@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+## Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Job Tracker Overview
@@ -17,6 +17,8 @@ Please feel free to register an account. If you just want to interact with the a
 Email: demo_user@fake-email.com
 
 Password: job12345
+
+Link to the live version (using firebase hosting): https://job-app-4a4bf.web.app/
 
 ## Backend
 
