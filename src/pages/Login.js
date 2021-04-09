@@ -44,8 +44,8 @@ export default function Login(){
             <div style={{width: '30%', marginTop: '25%', borderRadius: '10px', marginBottom: '25%', backgroundColor: 'white', borderStyle: 'outset'}}>{/*Card element for login*/}<br></br>
                 <h1 style={{fontWeight: 600, margin: '10px'}}>A personalized job app tracker</h1>
                 <p style={{margin: '10px'}}>A simple way for you to track the jobs that you apply to. Log in or sign up.</p>
-                <TextField id='standard-basic' label='Email Address' style={{margin: '10px', width: '95%'}} inputMode='email' value={application.loginEmail} onChange={(event) => SetApplication(prevState => ({...prevState, loginEmail: event.target.value}))}></TextField><br></br>
-                <TextField id='standard-basic' label='Password' style={{margin: '10px', width: '95%'}} type='password' value={application.loginPassword} onChange={(event) => SetApplication(prevState => ({...prevState, loginPassword: event.target.value}))}></TextField><br></br>
+                <TextField id='email-input' label='Email Address' style={{margin: '10px', width: '95%'}} inputMode='email' value={application.loginEmail} onChange={(event) => SetApplication(prevState => ({...prevState, loginEmail: event.target.value}))}></TextField><br></br>
+                <TextField id='password-input' label='Password' style={{margin: '10px', width: '95%'}} type='password' value={application.loginPassword} onChange={(event) => SetApplication(prevState => ({...prevState, loginPassword: event.target.value}))}></TextField><br></br>
                 <Button variant='contained' color='primary' style={{margin: '10px'}} onClick={() => handleLogin()}>Login</Button>
                 <Button variant='contained' color='primary' style={{margin: '10px'}} onClick={() => SetApplication(prevState => ({...prevState, isOpenSignUp: true}))}>Sign Up</Button>
                 <Modal isOpen={application.isOpenSignUp} onRequestClose={() => SetApplication(prevState => ({...prevState, isOpenSignUp: false}))}
